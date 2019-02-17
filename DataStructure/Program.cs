@@ -22,9 +22,14 @@ namespace DataStructure
             }
 
             Console.WriteLine(l1.ToString());
-            Console.WriteLine(l2.ToString());
-            Console.WriteLine(d1.ToString());
-            Console.WriteLine(d1.ReverseToString());
+            //Console.WriteLine(l2.ToString());
+            //Console.WriteLine(d1.ToString());
+            //Console.WriteLine(d1.ReverseToString());
+            
+            //d1.RemoveFirst();
+            //Console.WriteLine(d1.ToString());
+            l1.Remove(1);
+            Console.WriteLine(l1.ToString());
         }
     }
 }
