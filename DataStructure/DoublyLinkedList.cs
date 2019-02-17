@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,66 +7,171 @@ using System.Threading.Tasks;
 
 namespace DataStructure
 {
-    public class DNode<T> {
+    public class DNode<T>
+    {
         public T Value { get; set; }
         public DNode<T> Prev { get; set; }
         public DNode<T> Next { get; set; }
     }
 
-    public class DoublyLinkedList<T>
+    public class DoublyLinkedList<T> : ICollection<T>
     {
-        private DNode<T> head;
-        private DNode<T> tail;
+        public int Count { get; private set; }
 
-        public void AddFirst(T value) {
-            var newNode = new DNode<T> { Value = value, Prev = null, Next = head };
-            if (head != null)
-            {
-                head.Prev = newNode;
-            }
-            head = newNode;
+        public bool IsReadOnly => false;
+
+        public DNode<T> Head { get; private set; }
+        public DNode<T> Tail { get; private set; }
+
+        public void Add(T item)
+        {
+            AddLast(item);
         }
 
-        public void AddLast(T value) {
-            var newNode = new DNode<T> { Value = value, Prev = tail, Next = null };
-            if (head == null)
+        public void AddFirst(T value)
+        {
+            var newNode = new DNode<T> { Value = value, Prev = null, Next = Head };
+            if (Head != null)
             {
-                head = newNode;
-                tail = newNode;
+                Head.Prev = newNode;
+            }
+            Head = newNode;
+            Count++;
+        }
+
+        public void AddLast(T value)
+        {
+            var newNode = new DNode<T> { Value = value, Prev = Tail, Next = null };
+            if (Head == null)
+            {
+                Head = newNode;
             }
             else
             {
-                tail.Next = newNode;
-                tail = newNode;
+                Tail.Next = newNode;
+            }
+            Tail = newNode;
+            Count++;
+        }
+
+        public void Clear()
+        {
+            Head = null;
+            Tail = null;
+            Count = 0;
+        }
+
+        public bool Contains(T item)
+        {
+            var curr = Head;
+            while (curr != null) {
+                if (curr.Value.Equals(item))
+                {
+                    return true;
+                }
+                curr = curr.Next;
+            }
+            return false;
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            var curr = Head;
+            while (curr != null) {
+                array[arrayIndex++] = curr.Value;
+                curr = curr.Next;
             }
         }
 
-        public string ReverseToString() {
-            if (tail == null) return string.Empty;
-
-            StringBuilder sb = new StringBuilder();
-            var curr = tail;
+        public IEnumerator<T> GetEnumerator()
+        {
+            var curr = Head;
             while (curr != null) {
-                sb.Append(curr.Value);
-                if (curr.Prev != null) sb.Append(" <> ");
-                curr = curr.Prev;
+                yield return curr.Value;
+                curr = curr.Next;
             }
-            return sb.ToString();
+        }
+
+        public bool Remove(T item)
+        {
+            var curr = Head;
+            while (curr != null) {
+                if (curr.Value.Equals(item)) {
+                    if (curr.Prev != null)
+                    {
+                        curr.Prev.Next = curr.Prev;
+                        if (curr.Next == null)
+                        {
+                            Tail = curr.Prev;
+                        }
+                        Count--;
+                    }
+                    else
+                    {
+                        RemoveFirst();
+                    }
+                    return true;
+                }
+                curr = curr.Next;
+            }
+            return false;
+        }
+
+        public void RemoveFirst()
+        {
+            if (Head != null)
+            {
+                if (Head == Tail)
+                {
+                    Head = null;
+                    Tail = null;
+                }
+                else
+                {
+                    Head = Head.Next;
+                    Head.Prev = null;
+                }
+                Count--;
+            }
+        }
+
+        public void RemoveLast()
+        {
+            if (Tail != null)
+            {
+                if (Tail == Head)
+                {
+                    Head = null;
+                    Tail = null;
+                }
+                else
+                {
+                    Tail = Tail.Prev;
+                    Tail.Next = null;
+                }
+                Count--;
+            }
         }
 
         public override string ToString()
         {
-            if (head == null) return string.Empty;
+            if (Head == null) return string.Empty;
 
             StringBuilder sb = new StringBuilder();
-            var curr = head;
-            while (curr != null) {
+            var curr = Head;
+            while (curr != null)
+            {
                 sb.Append(curr.Value);
                 if (curr.Next != null) sb.Append(" <> ");
                 curr = curr.Next;
             }
 
             return sb.ToString();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<T>)this).GetEnumerator();
         }
     }
 }
