@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructure
 {
-    public class DNode<T>
-    {
-        public T Value { get; set; }
-        public DNode<T> Prev { get; set; }
-        public DNode<T> Next { get; set; }
-    }
-
     public class DoublyLinkedList<T> : ICollection<T>
     {
         public int Count { get; private set; }
 
         public bool IsReadOnly => false;
 
-        public DNode<T> Head { get; private set; }
-        public DNode<T> Tail { get; private set; }
+        public Node<T> Head { get; private set; }
+        public Node<T> Tail { get; private set; }
 
         public void Add(T item)
         {
@@ -30,7 +20,7 @@ namespace DataStructure
 
         public void AddFirst(T value)
         {
-            var newNode = new DNode<T> { Value = value, Prev = null, Next = Head };
+            var newNode = new Node<T> { Value = value, Prev = null, Next = Head };
             if (Head != null)
             {
                 Head.Prev = newNode;
@@ -41,7 +31,7 @@ namespace DataStructure
 
         public void AddLast(T value)
         {
-            var newNode = new DNode<T> { Value = value, Prev = Tail, Next = null };
+            var newNode = new Node<T> { Value = value, Prev = Tail, Next = null };
             if (Head == null)
             {
                 Head = newNode;
