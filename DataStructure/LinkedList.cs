@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructure
 {
-    public class Node<T>
-    {
-        public T Value { get; set; }
-        public Node<T> Next { get; set; }
-    }
-
     public class LinkedList<T> : ICollection<T>
     {
-
         public int Count { get; private set; }
 
         public bool IsReadOnly => false;
@@ -48,6 +39,15 @@ namespace DataStructure
             }
             Tail = newNode;
             Count += 1;
+        }
+
+        public void AddAfter(T value, Node<T> node)
+        {
+            if (node != null)
+            {
+                var newNode = new Node<T>() { Value = value, Next = node.Next };
+                node.Next = newNode;
+            }
         }
 
         public void Clear()
