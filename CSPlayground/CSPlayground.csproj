@@ -42,11 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PalindromChecker.cs" />
+    <Compile Include="ParenthesisChecker.cs" />
+    <Compile Include="PostfixCalculator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataStructure\DataStructure.csproj">
+      <Project>{d501da4b-310b-47f0-afbb-a505323101fa}</Project>
+      <Name>DataStructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
