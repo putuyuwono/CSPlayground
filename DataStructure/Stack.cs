@@ -25,8 +25,14 @@ namespace DataStructure
 
         public T Pop()
         {
-            var value = Data.Tail.Value;
-            Data.RemoveLast();
+            T value = default(T);
+
+            if (Data.Tail != null)
+            {
+                value = Data.Tail.Value;
+                Data.RemoveLast();
+            }
+
             return value;
         }
 
@@ -43,6 +49,10 @@ namespace DataStructure
         public override string ToString()
         {
             return Data.ToString();
+        }
+
+        public int Count() {
+            return Data.Count;
         }
 
     }
