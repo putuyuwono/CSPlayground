@@ -10,8 +10,8 @@ namespace CSPlayground
     {
         static void Main(string[] args)
         {
-            String test = "3 4 5 * - 10 *";
-            Console.WriteLine(PostfixCalculator.Calculate(test));
+            String test = "abc";
+            Console.WriteLine(PalindromChecker.IsPalindrom(test));
         }
     }
 }

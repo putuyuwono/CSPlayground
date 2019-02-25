@@ -15,13 +15,17 @@ namespace CSPlayground
         /// <param name="input">input string</param>
         /// <returns>true if palindrom</returns>
         public static bool IsPalindrom(string input) {
-            if (string.IsNullOrEmpty(input)) return false;
-            for (int i = 0; i < input.Length / 2; i++)
+            if (string.IsNullOrEmpty(input) || input.Length <= 1) return false;
+
+            int i = 0;
+            int j = input.Length - 1;
+            while(i < j)
             {
-                char a = input[i];
-                char b = input[input.Length - 1 - i];
-                if (a != b) return false;
+                if (input[i] != input[j]) return false;
+                i++;
+                j--;
             }
+
             return true;
         }
     }
