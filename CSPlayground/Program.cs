@@ -10,8 +10,10 @@ namespace CSPlayground
     {
         static void Main(string[] args)
         {
-            String test = "abc";
-            Console.WriteLine(PalindromChecker.IsPalindrom(test));
+            int[] arr = { 4, 3, 2, 1, 5, 9, 8, 0};
+            Console.WriteLine(string.Join(" ", arr));
+            BubbleSort.Sort(ref arr);
+            Console.WriteLine(string.Join(" ", arr));
         }
     }
 }
