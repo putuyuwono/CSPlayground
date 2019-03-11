@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BubbleSort.cs" />
     <Compile Include="PalindromChecker.cs" />
     <Compile Include="ParenthesisChecker.cs" />
     <Compile Include="PostfixCalculator.cs" />
