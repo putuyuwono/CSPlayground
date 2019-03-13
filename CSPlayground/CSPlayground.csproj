@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BubbleSort.cs" />
+    <Compile Include="MergeSort.cs" />
     <Compile Include="PalindromChecker.cs" />
     <Compile Include="ParenthesisChecker.cs" />
     <Compile Include="PostfixCalculator.cs" />
