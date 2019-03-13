@@ -10,10 +10,13 @@ namespace CSPlayground
     {
         static void Main(string[] args)
         {
-            int[] arr = { 4, 3, 2, 1, 5, 9, 8, 0};
+            int[] arr = { 4, 3, 2, 1, 5, 9, 8, 0, 7, 6};
             Console.WriteLine(string.Join(" ", arr));
             BubbleSort.Sort(ref arr);
             Console.WriteLine(string.Join(" ", arr));
+
+            var result = MergeSort.Sort(arr.ToList());
+            Console.WriteLine(string.Join(" ", result));
         }
     }
 }
