@@ -48,5 +48,12 @@ namespace DataStructure
             }
             return result;
         }
+
+        public int GetHeight(Node<T> root) {
+            if (root == null)
+                return -1;
+
+            return 1 + (int)Math.Max(GetHeight(root.Prev), GetHeight(root.Next));
+        }
     }
 }
