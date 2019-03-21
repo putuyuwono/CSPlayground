@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LinkedList = System.Collections.Generic.LinkedList<int>;
+using DataStructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +12,24 @@ namespace CSPlayground
     {
         static void Main(string[] args)
         {
-            TestLinkedListAdd();
+            TestBST();
+        }
+
+        static void TestBST() {
+            BinaryTree<int> bTree = new BinaryTree<int>();
+            Node<int> root = null;
+            string input = "2 3 4 5 6";
+            string[] splits = input.Split(' ');
+            foreach (var item in splits)
+            {
+                root = bTree.Insert(root, int.Parse(item.Trim()));
+            }
+            int height = bTree.GetHeight(root);
+            Console.WriteLine("Height: " + height);
         }
 
         static void TestLinkedListAdd() {
-            LinkedList<int> l1 = new LinkedList<int>();
+            LinkedList l1 = new LinkedList();
             foreach (var item in "789")
             {
                 int x = int.Parse(item.ToString());
@@ -22,7 +37,7 @@ namespace CSPlayground
             }
             l1 = ReverseLL(l1);
 
-            LinkedList<int> l2 = new LinkedList<int>();
+            LinkedList l2 = new LinkedList();
             foreach (var item in "1")
             {
                 int x = int.Parse(item.ToString());
@@ -30,7 +45,7 @@ namespace CSPlayground
             }
             l2 = ReverseLL(l2);
 
-            LinkedList<int> result = AddLLNode(l1.First, l2.First);
+            LinkedList result = AddLLNode(l1.First, l2.First);
             Console.WriteLine("Result: " + string.Join("", result.ToArray()));
         }
 
@@ -43,8 +58,8 @@ namespace CSPlayground
         /// <param name="n1">Head of LinkedList 1</param>
         /// <param name="n2">Head of LinkedList 2</param>
         /// <returns></returns>
-        static LinkedList<int> AddLLNode(LinkedListNode<int> n1, LinkedListNode<int> n2) {
-            LinkedList<int> result = new LinkedList<int>();
+        static LinkedList AddLLNode(LinkedListNode<int> n1, LinkedListNode<int> n2) {
+            LinkedList result = new LinkedList();
 
             int carry = 0, sum = 0, first = 0;
             while (n1 != null || n2 != null)
@@ -76,9 +91,9 @@ namespace CSPlayground
             return result;
         }
 
-        static LinkedList<int> ReverseLL(LinkedList<int> list)
+        static LinkedList ReverseLL(LinkedList list)
         {
-            LinkedList<int> r = new LinkedList<int>();
+            LinkedList r = new LinkedList();
 
             LinkedListNode<int> curr = list.First;
             while (curr != null)
